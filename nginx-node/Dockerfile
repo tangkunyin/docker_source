@@ -7,7 +7,7 @@ ENV NVM_VERSION 0.38.0
 ENV NODE_VERSION 14.16.0
 
 RUN  apt-get update && \
-     apt-get install -y curl && \
+     apt-get install -y curl vim procps net-tools iputils-ping openssh-client openssh-server && \
      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash && \
      export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" && \
      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
