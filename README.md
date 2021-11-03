@@ -7,7 +7,7 @@
 To build a docker image just do this
 
 ```
-docker build -t nginx-node:1.21.4-14.18.0 .
+docker build -t nginx-node:1.21.x-14.18.0 .
 ```
 
 ### nginx default optimize
@@ -75,3 +75,7 @@ http {
     include /etc/nginx/conf.d/*.conf;
 }
 ```
+
+## Upgrade
+
+If you want to upgrade nginx to the latest stable version, use the following: https://blog.lamz.top/post/debian10%E5%8D%87%E7%BA%A7nginx/
