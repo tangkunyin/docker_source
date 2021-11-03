@@ -4,8 +4,8 @@ LABEL maintainer="Thomas Tang <thomas@tangkunyin.com>"
 LABEL description="Based on the nginx:stable, node installed by nvm and nrm yarn all installed"
 
 
-ENV NVM_VERSION 0.38.0
-ENV NODE_VERSION 14.16.0
+ENV NVM_VERSION 0.39.0
+ENV NODE_VERSION 14.18.0
 ENV NVM_DIR /usr/local/nvm
 
 # Replace shell with bash first so we can source files

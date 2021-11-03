@@ -7,20 +7,21 @@
 To build a docker image just do this
 
 ```
-docker build -t nginx-node:1.0 .
+docker build -t nginx-node:1.21.4-14.18.0 .
 ```
 
 ### nginx default optimize
 
 ```
 user  nginx;
-worker_processes  2;
+worker_processes  auto;
 
 error_log  /var/log/nginx/error.log warn;
 pid        /var/run/nginx.pid;
 
 events {
-    worker_connections  4096;
+    worker_connections  10240;
+    multi_accept on;
 }
 
 http {
@@ -33,13 +34,43 @@ http {
 
     access_log  /var/log/nginx/access.log  main;
 
+    
     sendfile        on;
-    #tcp_nopush     on;
-
+    tcp_nopush on;
+    
     keepalive_timeout  120;
-    keepalive_requests 800;
+    tcp_nodelay on;
+    keepalive_requests 600;
 
     gzip  on;
+    gzip_min_length 1024;
+    gzip_buffers 16 8k;
+    gzip_comp_level 6;
+    gzip_vary on;
+    gzip_types  image/jpeg image/gif image/png
+                text/javascript application/javascript application/x-javascript
+                text/x-json application/json application/x-web-app-manifest+json
+                text/css text/plain text/x-component
+                text/xml application/xml application/atom+xml application/rss+xml application/xhtml+xml image/svg+xml
+                font/opentype application/x-font-ttf application/vnd.ms-fontobject
+                image/x-icon;
+
+    server {
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
+            expires 3d;
+            access_log off;
+        }
+        
+        location ~ .*\.(eot|ttf|otf|woff|svg)$ {
+            expires 30d;
+            access_log off;
+        }
+        
+        location ~ .*\.(js|css)?$ {
+            expires 1d;
+            access_log off;
+        }
+    }
 
     include /etc/nginx/conf.d/*.conf;
 }
