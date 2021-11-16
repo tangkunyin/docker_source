@@ -12,7 +12,7 @@ ENV NVM_DIR /usr/local/nvm
 # Replace shell with bash first so we can source files
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \  
      apt-get update && \
-     apt-get install -y curl vim procps net-tools iputils-ping openssh-client openssh-server && \
+     apt-get install -y curl vim procps net-tools iputils-ping openssh-client openssh-server git && \
      rm -rf /var/lib/apt/lists/* && apt-get clean && apt-get autoclean && apt-get autoremove && \
      mkdir -p /usr/local/nvm && \
      ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log && \
