@@ -1,4 +1,5 @@
-FROM nginx:stable
+#FROM nginx:stable
+FROM nginx:1.21.4
 
 LABEL maintainer="Thomas Tang <thomas@tangkunyin.com>"
 LABEL description="Based on the nginx:stable, node installed by nvm and nrm yarn all installed"
@@ -12,8 +13,9 @@ ENV NVM_DIR /usr/local/nvm
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \  
      apt-get update && \
      apt-get install -y curl vim procps net-tools iputils-ping openssh-client openssh-server && \
-     rm -rf /var/lib/apt/lists/* && \
+     rm -rf /var/lib/apt/lists/* && apt-get clean && apt-get autoclean && apt-get autoremove && \
      mkdir -p /usr/local/nvm && \
+     ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log && \
      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash && \
      . $NVM_DIR/nvm.sh && \
      nvm install ${NODE_VERSION} && \
