@@ -1,13 +1,13 @@
-# Docker build file source
+# Build your own docker app from this
 
 ## nginx-node
 
 > used for front-end development
 
-To build a docker image just do this
+Start docker engine and run this command
 
 ```
-docker build -t nginx-node:1.21.x-14.18.0 .
+docker build -t nginx-node:stable-nlts .
 ```
 
 ### nginx default optimize

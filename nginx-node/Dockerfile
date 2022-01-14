@@ -1,12 +1,10 @@
-#FROM nginx:stable
-FROM nginx:1.21.4
+FROM nginx:stable
 
 LABEL maintainer="Thomas Tang <thomas@tangkunyin.com>"
-LABEL description="Based on the nginx:stable, node installed by nvm and nrm yarn all installed"
+LABEL description="Based on the nginx:stable, node installed by nvm and nrm|yarn|pnpm|git were all installed"
 
-
-ENV NVM_VERSION 0.39.0
-ENV NODE_VERSION 14.18.0
+ENV NVM_VERSION 0.39.1
+ENV NODE_VERSION 16.13.2
 ENV NVM_DIR /usr/local/nvm
 
 # Replace shell with bash first so we can source files
@@ -21,8 +19,8 @@ RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
      nvm install ${NODE_VERSION} && \
      nvm alias default ${NODE_VERSION} && \
      nvm use ${NODE_VERSION} && \
-     npm install -g nrm yarn && \
-     nrm use cnpm && \
+     npm install -g nrm yarn pnpm && \
+     nrm use taobao && \
      nvm cache clear
 
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
