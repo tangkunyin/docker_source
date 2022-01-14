@@ -1,4 +1,4 @@
-# Build your own docker app from this
+# Build your own docker app from here
 
 ## nginx-node
 
@@ -13,7 +13,7 @@ docker build -t nginx-node:stable-nlts .
 ### develop toolchain
 
 ```
-apt-get install -y vim procps net-tools iputils-ping openssh-client openssh-server git
+apt-get install -y vim procps net-tools iputils-ping openssh-client openssh-server git curl
 ```
 
 ### nginx default optimize
