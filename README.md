@@ -10,6 +10,12 @@ Start docker engine and run this command
 docker build -t nginx-node:stable-nlts .
 ```
 
+### develop toolchain
+
+```
+apt-get install -y vim procps net-tools iputils-ping openssh-client openssh-server git
+```
+
 ### nginx default optimize
 
 ```
