@@ -10,7 +10,7 @@ ENV NVM_DIR /usr/local/nvm
 # Replace shell with bash first so we can source files
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \  
      apt-get update && \
-     apt-get install -y curl && \
+     apt-get install -y curl vim procps && \
      mkdir -p /usr/local/nvm && \
      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash && \
      . $NVM_DIR/nvm.sh && \
@@ -18,6 +18,8 @@ RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
      npm install -g nrm pnpm yarn && \
      nrm use taobao && \
      nvm cache clear && \
+     copy ./nginx.conf /etc/nginx && \
+     copy ./default.conf /etc/nginx/conf.d && \
      rm -rf /var/lib/apt/lists/* && apt-get purge curl -y && apt-get autoremove -y && apt-get clean && apt-get autoclean && \
      ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
