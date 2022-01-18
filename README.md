@@ -29,6 +29,17 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
 }
 ```
 
+### use in project
+
+```
+FROM xxx.yyy.com/org/nginx-node:stable-nlts
+
+COPY . /home/work/app/${your-app}
+COPY nginx/site-enable /etc/nginx/conf.d
+
+ENTRYPOINT nginx
+```
+
 ## Upgrade
 
 If you want to upgrade nginx to the latest stable version, use the following: https://blog.lamz.top/post/debian10%E5%8D%87%E7%BA%A7nginx/
