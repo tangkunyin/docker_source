@@ -3,6 +3,7 @@ FROM nginx:stable
 LABEL maintainer="Thomas Tang <thomas@tangkunyin.com>"
 LABEL description="Based on the nginx:stable, node installed by nvm and nrm|pnpm|yarn were all installed"
 
+ENV TZ Asia/Shanghai
 ENV NVM_VERSION 0.39.1
 ENV NODE_VERSION 16.13.2
 ENV NVM_DIR /usr/local/nvm
@@ -11,6 +12,7 @@ COPY nginx.conf /etc/nginx
 
 # Replace shell with bash first so we can source files
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
+     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone && \
      apt-get update && \
      apt-get install -y curl vim procps && \
      mkdir -p /usr/local/nvm && \
