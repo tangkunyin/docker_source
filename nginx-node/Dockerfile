@@ -26,3 +26,5 @@ COPY default.conf /etc/nginx/conf.d
 
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+ENTRYPOINT nginx

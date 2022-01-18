@@ -37,7 +37,8 @@ FROM xxx.yyy.com/org/nginx-node:stable-nlts
 COPY . /home/work/app/${your-app}
 COPY nginx/site-enable /etc/nginx/conf.d
 
-ENTRYPOINT nginx
+# Don't set this
+#ENTRYPOINT nginx
 ```
 
 ## Upgrade
