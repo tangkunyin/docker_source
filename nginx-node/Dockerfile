@@ -18,10 +18,11 @@ RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
      npm install -g nrm pnpm yarn && \
      nrm use taobao && \
      nvm cache clear && \
-     copy ./nginx.conf /etc/nginx && \
-     copy ./default.conf /etc/nginx/conf.d && \
      rm -rf /var/lib/apt/lists/* && apt-get purge curl -y && apt-get autoremove -y && apt-get clean && apt-get autoclean && \
      ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
+
+COPY nginx.conf /etc/nginx
+COPY default.conf /etc/nginx/conf.d
 
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
