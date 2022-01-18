@@ -12,7 +12,7 @@ COPY nginx.conf /etc/nginx
 
 # Replace shell with bash first so we can source files
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
-     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone && \
+     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
      apt-get update && \
      apt-get install -y curl vim procps && \
      mkdir -p /usr/local/nvm && \
