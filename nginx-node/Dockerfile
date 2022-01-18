@@ -7,11 +7,10 @@ ENV NVM_VERSION 0.39.1
 ENV NODE_VERSION 16.13.2
 ENV NVM_DIR /usr/local/nvm
 
-COPY nginx.conf default.conf /etc/nginx
+COPY nginx.conf /etc/nginx
 
 # Replace shell with bash first so we can source files
 RUN  rm /bin/sh && ln -s /bin/bash /bin/sh && \
-     mv /etc/nginx/default.conf /etc/nginx/conf.d/ && \
      apt-get update && \
      apt-get install -y curl vim procps && \
      mkdir -p /usr/local/nvm && \

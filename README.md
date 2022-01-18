@@ -16,16 +16,31 @@ docker build -t nginx-node:stable-nlts .
 apt-get install -y vim procps net-tools iputils-ping openssh-client openssh-server git curl
 ```
 
+#### traffic monitor
+
+```
+# https://blog.csdn.net/qq_25627105/article/details/106101819
+location /ng-status {
+	vhost_traffic_status_display;
+	vhost_traffic_status_display_format html;
+	allow 127.0.0.1;
+	deny all;
+}
+```
+
 ### nginx optimize
 
 - use optimized params in `nginx-node/nginx.conf`
 - use static resource cache
 
 ```
+# add this to your project configuration
 location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
     expires 12h;
     access_log off;
     log_not_found off;
+
+    root /home/work/app/${projectName};
 }
 ```
 
