@@ -5,7 +5,7 @@ LABEL description="Based on the nginx:stable, node installed by nvm and nrm|pnpm
 
 ENV TZ Asia/Shanghai
 ENV NVM_VERSION 0.39.1
-ENV NODE_VERSION 16.13.2
+ENV NODE_VERSION 16.14.2
 ENV NVM_DIR /usr/local/nvm
 
 COPY nginx.conf /etc/nginx
